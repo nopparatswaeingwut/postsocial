@@ -4,10 +4,18 @@ const app = express();
 const { IgApiClient } = require("instagram-private-api");
 const { writeFile, readFile, access } = require("fs/promises");
 const path = require("path");
+const asios = require("axios");
+const bodyParser = require("body-parser");
+const { default: axios } = require("axios");
+
 // const {
 //   MediaCommentsFeedResponse,
 //   MediaCommentsFeedResponseCommentsItem,
 // } = require("responses");
+
+app.use(bodyParser.json());
+
+app.use(bodyParser.urlencoded({extended:true}));
 
 async function instaSessionSave(data) {
   console.log("Trying to save the IG Session");
@@ -41,7 +49,7 @@ async function instaSessionLoad() {
   }
 }
 
-app.post("/api/login", function (req, res) {
+app.post("/api/infoInstagram", function (req, res) {
   (async () => {
     const ig = new IgApiClient();
     ig.state.generateDevice(process.env.IG_USERNAME);
@@ -84,38 +92,25 @@ app.post("/api/login", function (req, res) {
   })();
 });
 
-app.post("/api/postvideo", function (req, res) {
-  (async () => {
-    const videoPath = "C:/Users/DELL/Desktop/instagram/video/Video1m.mp4";
-    const coverPath = "C:/Users/DELL/Desktop/instagram/image/PNG.png";
+app.post("/api/postfacebook",  (req, res) =>{
 
-    const publishResult = await ig.publish.video({
-      video: await readFileAsync(videoPath),
-      coverImage: await readFileAsync(coverPath),
-      caption: "Test post video 1 minute instagram ",
-    });
+    const text =req.body.text;
+    const img = req.body.img;
+    pageId = "103583955925008"
+    FBaccess_token = "EAAHexu6utcgBAE3sWdoOKr8DCUXpEKjkxKU1QaIJNhVWxUZChLD2rxbaxi77XfF04YfT78XbbTwoS5ytb0dvwFu2FpLZCBB6PbXZB3jCUyveKLO1LJZBwcoJvnEMJcgsvx1TOcR7FRjjOawlTXw0IZCkUQyD3VkTTxH1lHaSR8YnC8A8jMLCIZANi5YgXqSIZCZCULrgRXo1QW7ZAjdxZC3q8c"
 
-    console.log(publishResult);
-    console.log("Post video succeed");
-  })();
-});
-app.post("/api/postimage", function (req, res) {
-  (async () => {
-    const ig = new IgApiClient();
-    console.log("Login succeed");
-    console.log("Post photo succeed");
-    const imageBuffer = await get({
-      url: "https://cdn.pixabay.com/photo/2022/02/06/15/58/squirrel-6997505_960_720.jpg",
-      encoding: null,
+    axios.post(`https://graph.facebook.com/${pageId}/photos?url=${img}?tok=ApRxY9_r?&FBaccess_token=${FBaccess_token}`,
+    null
+    )
+    .then(function(response){
+      console.log(response);
+    })
+    .catch(function (error){
+      console.log(error);
     });
-    await ig.publish.photo({
-      file: imageBuffer,
-      caption: "Test post instagram #post #test #photo",
-    });
-  })();
-});
+  });
 
 const port = process.env.PORT || 3300;
 app.listen(port, () =>
-  console.log(`IG API server started listening on ${port}...`)
+  console.log(` API server started listening on ${port}...`)
 );

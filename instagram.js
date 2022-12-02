@@ -58,56 +58,56 @@ async function login() {
 //************** post photo *************
 // x = 2;
 // if (x == 1) {
-//   const postToInsta = async () => {
-//     login();
-//     const ig = new IgApiClient();
-//     console.log("Login succeed");
-//     console.log("Post photo succeed");
-//     const imageBuffer = await get({
-//       url: "https://cdn.pixabay.com/photo/2022/02/06/15/58/squirrel-6997505_960_720.jpg",
-//       encoding: null,
-//     });
-//     await ig.publish.photo({
-//       file: imageBuffer,
-//       caption: "Test post instagram #post #test #photo",
-//     });
-//   };
+  // const postToInsta = async () => {
+  //   login();
+  //   const ig = new IgApiClient();
+  //   console.log("Login succeed");
+  //   console.log("Post photo succeed");
+  //   const imageBuffer = await get({
+  //     url: "https://cdn.pixabay.com/photo/2022/02/06/15/58/squirrel-6997505_960_720.jpg",
+  //     encoding: null,
+  //   });
+  //   await ig.publish.photo({
+  //     file: imageBuffer,
+  //     caption: "Test post instagram #post #test #photo",
+  //   });
+  // };
 
-//   console.log(postToInsta);
-//   postToInsta();
+  // console.log(postToInsta);
+  // postToInsta();
 // } else {
 //  login();
-//   //post Video
-//   (async () => {
-//     console.log("Login succeed");
+  //post Video
+  // (async () => {
+  //   console.log("Login succeed");
 
-//     const videoPath = "C:/Users/DELL/Desktop/instagram/video/Video1m.mp4";
-//     // const coverPath = "C:/Users/DELL/Desktop/instagram/image/JPG.jpg";
-//     const coverPath = "C:/Users/DELL/Desktop/instagram/image/PNG.png";
+  //   const videoPath = "C:/Users/DELL/Desktop/instagram/video/Video1m.mp4";
+  //   // const coverPath = "C:/Users/DELL/Desktop/instagram/image/JPG.jpg";
+  //   const coverPath = "C:/Users/DELL/Desktop/instagram/image/PNG.png";
 
-//     const publishResult = await ig.publish.video({
-//       video: await readFileAsync(videoPath),
-//       coverImage: await readFileAsync(coverPath),
-//       caption: "Test post video 1 minute instagram ",
-//     });
+  //   const publishResult = await ig.publish.video({
+  //     video: await readFileAsync(videoPath),
+  //     coverImage: await readFileAsync(coverPath),
+  //     caption: "Test post video 1 minute instagram ",
+  //   });
 
-//     console.log(publishResult);
-//     console.log("Post video succeed");
-//   })();
+  //   console.log(publishResult);
+  //   console.log("Post video succeed");
+  // })();
 // }
 
 
 //************** show information *************
-test = async () => {
-  await login();
-  const userID = await ig.user.getIdByUsername('test_work_post');
-  const userInfo = await ig.user.info(userID);
-  console.log("Show information");
-  console.log(userInfo.follower_count);
+// test = async () => {
+//   await login();
+//   const userID = await ig.user.getIdByUsername('test_work_post');
+//   const userInfo = await ig.user.info(userID);
+//   console.log("Show information");
+//   console.log(userInfo.follower_count);
 
-console.log("test");
-}
-test();
+// console.log("test");
+// }
+// test();
 
 
 // (async () => {
